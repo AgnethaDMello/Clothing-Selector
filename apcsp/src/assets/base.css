@@ -4,7 +4,7 @@
   --black: #181818;
   --burnt-red: #c0452f;
 
-  --h1: 10rem;
+  --h1: 7rem;
 }
 
 *,
@@ -17,6 +17,16 @@
 }
 
 body {
+  font-family: 'Barlow Condensed', sans-serif;
   color: var(--black);
   background: var(--white);
+  display: flex;
+}
+
+h1 {
+  font-size: var(--h1);
+  width: 100%;
+  margin-left: 95%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
