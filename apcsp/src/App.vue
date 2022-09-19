@@ -1,5 +1,38 @@
+<template>
+    <div>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
+        <h1>Clothing Selector!</h1>
+        <div class="cards">
+          <Card
+            class="card"
+            v-for="(item, index) in items"
+            :key="item.name"
+            :name="item.name"
+            :img="item.img"
+            :desc="item.desc"
+            :type="item.type"
+            :index="index"
+          >
+          </Card>
+        </div>
+    </div>
+    </template>
 <script>
+/*     import Slider from "./components/slider.vue";
+    export default {
+  name: "app",
+  components: {
+    Slider
+  }
+}; */
+import Card from "./components/card.vue"
 export default {
+    name: "Home",
+  components: {
+    Card,
+  },
     data() {
     return {
       items: [
@@ -55,37 +88,37 @@ export default {
             name: "Track Pant",
             type: "pant",
             img: "https://underarmour.scene7.com/is/image/Underarmour/PS1357201-001_HF?rp=standard-0pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=566&hei=708&size=566,708 ",
-            desc: "hi",
+            desc: "A black track pant, comfortable and hugs your legs well while exercising.",
         },
         {
             name: "Sweatpants",
             type: "pant",
-            img: "https://img.abercrombie.com/is/image/anf/KIC_156-2331-0775-410_prod1?policy=product-medium ",
-            desc: "hi",
+            img: "https://media.gq.com/photos/6036b7eeb86c65eb745394a8/master/w_2000,h_1333,c_limit/Goodwear-fleece-sweatpants-with-side-pockets.jpg",
+            desc: "A grey sweatpant, cozy and snug for being both lazy and active.",
         },
         {
             name: "Straight Pants",
             type: "pant",
             img: "https://img.abercrombie.com/is/image/anf/KIC_156-2331-0775-410_prod1?policy=product-medium ",
-            desc: "hi",
+            desc: "A tan straight legged pant, great for formal occassions.",
         },
         {
             name: "Flared",
             type: "pant",
             img: "https://cdn-images.farfetch-contents.com/17/88/99/09/17889909_39807318_300.jpg",
-            desc: "hi",
+            desc: "A black flared legging, modern and chic, plus they pair well with many shirts.",
         },
         {
             name: "Skinny Jean",
             type: "pant",
             img: "https://i.pinimg.com/originals/98/12/ff/9812ff098d3e16dd61fad13db217c50f.jpg",
-            desc: "hi",
+            desc: "A dark blue skinny jean, a continuity in the fashion world for many years.",
         },
         {
             name: "Wide Jean",
             type: "pant",
             img: "https://media.companys.com/images/light-blue-elmagz-hw-wide-jeans.jpg?i=AP6cq-RN2Ag/428509&mw=610",
-            desc: "hi",
+            desc: "A light blue wide jean, covers your leg shape and can become baggy if sized up.",
         },
         {
             name: "Distressed Jean",
@@ -105,14 +138,17 @@ export default {
 }
 </script>
 
-<template>
-<div>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
-    <h1>Clothing Selector!</h1>
-</div>
-</template>
-
 <style scoped>
+    .card {
+  margin-top: 2rem;
+  width: 21rem;
+  height: 23rem;
+  background-color: rgb(79, 146, 197);
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 </style>
