@@ -4,34 +4,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
         <h1>Clothing Selector!</h1>
+        <a class="prev" @click="prev" href="#">&#10094; </a>
         <div class="cards">
-          <Card
-            class="card"
+          <Slider
+            class="slider"
             v-for="(item, index) in items"
             :key="item.name"
             :name="item.name"
-            :img="item.img"
+            :image="item.img"
             :desc="item.desc"
             :type="item.type"
             :index="index"
           >
-          </Card>
+        </Slider>
+      <a class="next" @click="next" href="#">&#10095; </a>
         </div>
     </div>
     </template>
 <script>
-/*     import Slider from "./components/slider.vue";
-    export default {
-  name: "app",
-  components: {
-    Slider
-  }
-}; */
-import Card from "./components/card.vue"
+import Slider from "./components/slider.vue"
 export default {
     name: "Home",
   components: {
-    Card,
+    Slider,
   },
     data() {
     return {
@@ -124,31 +119,80 @@ export default {
             name: "Distressed Jean",
             type: "pant",
             img: "https://cdn-fnknc.nitrocdn.com/jwqHRGAzpUgGskUSHlppNQzwuXgXIKwg/assets/static/optimized/rev-c69cd9d/wp-content/uploads/2022/08/Amiri_BestRippedJeans.jpg",
-            desc: "hi",
+            desc: "A washed out light blue jean with tears, a bold punk statement.",
         },
         {
             name: "Cargo Pant",
             type: "pant",
             img: "https://admin.kaufmannstatic.com/Images/177940_seaweed_01-T20220713013313.jpg?i=177940_seaweed_01-T20220713013313.jpg&w=300&h=300&bgcolor=ffffff",
-            desc: "hi",
+            desc: "Light grey-green cargo pants, practical for work and great for streetstyle.",
         },
       ]
     }
-}
+},
+mounted: function() {
+    this.startSlide();
+  },
+  methods: {
+    startSlide: function() {
+      this.timer = setInterval(this.next, 4000);
+    },
+    next: function() {
+      this.currentIndex += 1;
+    },
+    prev: function() {
+      this.currentIndex -= 1;
+    }
+  },
+  computed: {
+    currentImg: function() {
+      return this.images[Math.abs(this.currentIndex) % this.images.length];
+    }
+  }
 }
 </script>
 
 <style scoped>
-    .card {
-  margin-top: 2rem;
-  width: 21rem;
-  height: 23rem;
-  background-color: rgb(79, 146, 197);
-}
-.cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+/*   .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.9s ease;
+    overflow: hidden;
+    visibility: visible;
+    position: absolute;
+    width:100%;
+    opacity: 1;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    visibility: hidden;
+    width:100%;
+    opacity: 0;
+  }
+  img {
+    height:600px;
+    width:100%;
+  }
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.7s ease;
+    border-radius: 0 4px 4px 0;
+    text-decoration: none;
+    user-select: none;
+  }
+  .next {
+    right: 0;
+  }
+  .prev {
+    left: 0;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.9);
+  } */
 </style>

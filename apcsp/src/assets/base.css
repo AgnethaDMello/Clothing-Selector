@@ -26,7 +26,6 @@ body {
 h1 {
   font-size: var(--h1);
   width: 100%;
-  margin-left: 95%;
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
