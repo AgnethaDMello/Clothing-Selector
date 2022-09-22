@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,4 +195,27 @@ mounted: function() {
   .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.9);
   } */
-</style>
+</style> -->
+
+<script>
+import Slider from "./components/Slider.vue";
+export default {
+  name: "app",
+  components: {
+    Slider
+  }
+};
+</script>
+
+<template>
+    <div>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
+    
+        <h1>Clothing Selector!</h1>
+        <div class="cards">
+          <Slider/>
+        </div>
+    </div>
+</template>
