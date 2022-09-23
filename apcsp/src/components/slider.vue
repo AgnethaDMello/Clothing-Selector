@@ -34,7 +34,7 @@
     <div>
       <transition-group name="fade" tag="div">
         <div>
-          <img :src="currentImg" />
+          <img :src="currentImg"/>
         </div>
       </transition-group>
       <a class="prev" @click="prev" href="#">&#10094; </a>
@@ -43,16 +43,16 @@
   </template>
   
   <script>
-import bye from "../images/bye.jpg";
-import hi from "../images/hi.jpg";
   export default {
     name: "Slider",
     data() {
       return {
         images: [
-          bye,
-          hi
-        ],
+          { img:"https://cdn.pixabay.com/photo/2015/12/12/15/24/amsterdam-1089646_1280.jpg"},
+          { img:"https://cdn.pixabay.com/photo/2016/02/17/23/03/usa-1206240_1280.jpg"},
+          { img:"https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_1280.jpg"},
+          { img:"https://cdn.pixabay.com/photo/2016/12/04/19/30/berlin-cathedral-1882397_1280.jpg"},
+      ],
         timer: null,
         currentIndex: 0
       };
