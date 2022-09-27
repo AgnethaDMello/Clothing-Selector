@@ -1,42 +1,22 @@
 <template>
     <div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
-        <h1>Clothing Selector!</h1>
-        <button @click="awesome = !awesome">Toggle</button>
-
-<h1 v-if="awesome">Vue is awesome!</h1>
-<h1 v-else>Oh no 😢</h1>
-        <a class="prev" @click="prev" href="#">&#10094; </a>
-        <div class="cards">
-          <Slider
-            class="slider"
-            v-for="(item, index) in items"
-            v-if="awesome"
-            :key="item.name"
-            :name="item.name"
-            :image="item.img"
-            :desc="item.desc"
-            :type="item.type"
-            :index="index"
-          >
-        </Slider>
-      <a class="next" @click="next" href="#">&#10095; </a>
+      <transition-group name="fade" tag="div">
+        <div>
+          <img :src="currentImg"/>
         </div>
+      </transition-group>
+      <a class="prev" @click="prev" href="#">&#10094; </a>
+      <a class="next" @click="next" href="#">&#10095; </a>
+
     </div>
-    </template>
-<script>
-import Slider from "./components/slider.vue"
-export default {
-    name: "Home",
-  components: {
-    Slider,
-  },
+  </template>
+  
+  <script>
+  export default {
+    name: "ShirtSlider",
     data() {
-    return {
-      awesome: true,
-      items: [
+      return {
+        images: [
         {
             name: "Button Down",
             type: "shirt",
@@ -134,34 +114,28 @@ export default {
             desc: "Light grey-green cargo pants, practical for work and great for streetstyle.",
         },
       ],
-      timer: null,
-      currentIndex: 0
-    };
-},
-mounted: function() {
-    this.startSlide();
-  },
-  methods: {
-    startSlide: function() {
-      this.timer = setInterval(this.next, 4000);
+        currentIndex: 0
+      };
     },
-    next: function() {
-      this.currentIndex += 1;
+    methods: {
+      next: function() {
+        this.currentIndex += 1;
+        console.log(this.images);
+      },
+      prev: function() {
+        this.currentIndex -= 1;
+      }
     },
-    prev: function() {
-      this.currentIndex -= 1;
+    computed: {
+      currentImg: function() {
+        return this.images[Math.abs(this.currentIndex) % this.images.length];
+      }
     }
-  },
-  computed: {
-    currentImg: function() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
-    }
-  }
-}
-</script>
-
-<style scoped>
-/*   .fade-enter-active,
+  };
+  </script>
+  
+  <style scoped>
+  .fade-enter-active,
   .fade-leave-active {
     transition: all 0.9s ease;
     overflow: hidden;
@@ -177,8 +151,9 @@ mounted: function() {
     opacity: 0;
   }
   img {
-    height:600px;
-    width:100%;
+    margin: 3rem;
+    height:20rem;
+    width:20rem;
   }
   .prev, .next {
     cursor: pointer;
@@ -186,7 +161,7 @@ mounted: function() {
     top: 40%;
     width: auto;
     padding: 16px;
-    color: black;
+    color: rgb(172, 30, 30);
     font-weight: bold;
     font-size: 18px;
     transition: 0.7s ease;
@@ -202,28 +177,4 @@ mounted: function() {
   }
   .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.9);
-  } */
-</style>
-
-<!-- <script>
-import ShirtSlider from "./components/shirtslider.vue";
-export default {
-  name: "app",
-  components: {
-    ShirtSlider
-  }
-};
-</script>
-
-<template>
-    <div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
-    
-        <h1>Clothing Selector!</h1>
-        <div class="cards">
-          <ShirtSlider class="slider"/>
-        </div>
-    </div>
-</template> -->
+  }</style>
