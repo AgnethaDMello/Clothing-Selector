@@ -3,227 +3,162 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
-        <h1>Clothing Selector!</h1>
-        <button @click="awesome = !awesome">Toggle</button>
-
-<h1 v-if="awesome">Vue is awesome!</h1>
-<h1 v-else>Oh no 😢</h1>
-        <a class="prev" @click="prev" href="#">&#10094; </a>
-        <div class="cards">
-          <Slider
-            class="slider"
-            v-for="(item, index) in items"
-            v-if="awesome"
-            :key="item.name"
+        <h1 id="header">Clothing Gallery!</h1>
+        <div id="gallery" v-for="(item, index) in items"
+        :key="item.name"
             :name="item.name"
             :image="item.img"
             :desc="item.desc"
-            :type="item.type"
-            :index="index"
-          >
-        </Slider>
-      <a class="next" @click="next" href="#">&#10095; </a>
+            :index="index">
+            <div id="column1" class="cards" v-if="item.shirt">
+              <h2 class="shirts">
+    {{ item.name }}
+            </h2>
+            <img class="shirts" :src="item.img"/>
+            <h2 class="shirts" >
+    {{ item.desc }}
+            </h2>
+          </div>
+  <div id="column2" class="cards" v-else>
+              <h2 class="pants">
+    {{ item.name }}
+            </h2>
+            <img class="pants" :src="item.img"/>
+            <h2 class="pants" >
+    {{ item.desc }}
+            </h2>
+  </div>
         </div>
     </div>
     </template>
 <script>
-import Slider from "./components/slider.vue"
 export default {
     name: "Home",
-  components: {
-    Slider,
-  },
     data() {
     return {
-      awesome: true,
       items: [
         {
             name: "Button Down",
-            type: "shirt",
+            shirt: true,
             img: "https://assets.vogue.com/photos/5d76ece4b149a10008466ddc/1:1/w_640,h_640,c_limit/slide.jpg",
             desc: "A white button-down shirt, a classic for formal looks.",
         },
         {
             name: "Flannel",
-            type: "shirt",
+            shirt: true,
             img: "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHH801001_OLD_A_1024x.jpg?v=1630616666",
             desc: "A green plaid shirt, comfortable and great for the outdoors.",
         },
         {
             name: "T-Shirt",
-            type: "shirt",
+            shirt: true,
             img: "https://m.media-amazon.com/images/I/91PuI8YmFSL._AC_UL320_.jpg",
             desc: "A simple plain yellow t-shirt, made for hot, sunny days.",
         },
         {
             name: "Long Sleeve",
-            type: "shirt",
+            shirt: true,
             img: "https://imgprd19.hobbylobby.com/9/ff/7b/9ff7b3226495f1a49d4a66bd8110f62b9660e2e3/350Wx350H-620831-0122.jpg",
             desc: "A black long sleeve shirt, versatile and can be paired with almost anything.",
         },
         {
             name: "Tank Top",
-            type: "shirt",
+            shirt: true,
             img: "https://balenciaga.dam.kering.com/m/109eb6f465f470db/Medium-6573954A8B81000_F.jpg?v=8",
             desc: "A black tank top, designed for hot weather and workouts.",
         },
         {
             name: "Polo Shirt",
-            type: "shirt",
+            shirt: true,
             img: "https://www.apetogentleman.com/wp-content/uploads/2020/05/bestpolos9.jpg",
             desc: "A polo short sleeve shirt, a staple in the closet of golfers.",
         },
         {
             name: "Hawaiian Shirt",
-            type: "shirt",
+            shirt: true,
             img: "https://hawaiian-shirt-shop.co.uk/wp-content/uploads/2017/06/HSS147-Premium-Orchids-Red.jpg",
             desc: "A bright, colorful hawaiian shirt, fun and perfect for tropical vacations.",
         },
         {
             name: "V-Neck",
-            type: "shirt",
+            shirt: true,
             img: "https://oldnavy.gap.com/webcontent/0028/497/539/cn28497539.jpg",
             desc: "A navy blue v-neck shirt, simple yet classy.",
         },
         {
             name: "Track Pant",
-            type: "pant",
+            shirt: false,
             img: "https://underarmour.scene7.com/is/image/Underarmour/PS1357201-001_HF?rp=standard-0pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=566&hei=708&size=566,708 ",
             desc: "A black track pant, comfortable and hugs your legs well while exercising.",
         },
         {
             name: "Sweatpants",
-            type: "pant",
+            shirt: false,
             img: "https://media.gq.com/photos/6036b7eeb86c65eb745394a8/master/w_2000,h_1333,c_limit/Goodwear-fleece-sweatpants-with-side-pockets.jpg",
             desc: "A grey sweatpant, cozy and snug for being both lazy and active.",
         },
         {
             name: "Straight Pants",
-            type: "pant",
+            shirt: false,
             img: "https://img.abercrombie.com/is/image/anf/KIC_156-2331-0775-410_prod1?policy=product-medium ",
             desc: "A tan straight legged pant, great for formal occassions.",
         },
         {
             name: "Flared",
-            type: "pant",
+            shirt: false,
             img: "https://cdn-images.farfetch-contents.com/17/88/99/09/17889909_39807318_300.jpg",
             desc: "A black flared legging, modern and chic, plus they pair well with many shirts.",
         },
         {
             name: "Skinny Jean",
-            type: "pant",
+            shirt: false,
             img: "https://i.pinimg.com/originals/98/12/ff/9812ff098d3e16dd61fad13db217c50f.jpg",
             desc: "A dark blue skinny jean, a continuity in the fashion world for many years.",
         },
         {
             name: "Wide Jean",
-            type: "pant",
+            shirt: false,
             img: "https://media.companys.com/images/light-blue-elmagz-hw-wide-jeans.jpg?i=AP6cq-RN2Ag/428509&mw=610",
             desc: "A light blue wide jean, covers your leg shape and can become baggy if sized up.",
         },
         {
             name: "Distressed Jean",
-            type: "pant",
+            shirt: false,
             img: "https://cdn-fnknc.nitrocdn.com/jwqHRGAzpUgGskUSHlppNQzwuXgXIKwg/assets/static/optimized/rev-c69cd9d/wp-content/uploads/2022/08/Amiri_BestRippedJeans.jpg",
             desc: "A washed out light blue jean with tears, a bold punk statement.",
         },
         {
             name: "Cargo Pant",
-            type: "pant",
+            shirt: false,
             img: "https://admin.kaufmannstatic.com/Images/177940_seaweed_01-T20220713013313.jpg?i=177940_seaweed_01-T20220713013313.jpg&w=300&h=300&bgcolor=ffffff",
             desc: "Light grey-green cargo pants, practical for work and great for streetstyle.",
         },
       ],
-      timer: null,
-      currentIndex: 0
     };
 },
-mounted: function() {
-    this.startSlide();
-  },
-  methods: {
-    startSlide: function() {
-      this.timer = setInterval(this.next, 4000);
-    },
-    next: function() {
-      this.currentIndex += 1;
-    },
-    prev: function() {
-      this.currentIndex -= 1;
-    }
-  },
-  computed: {
-    currentImg: function() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
-    }
-  }
 }
 </script>
 
 <style scoped>
-/*   .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.9s ease;
-    overflow: hidden;
-    visibility: visible;
-    position: absolute;
-    width:100%;
-    opacity: 1;
-  }
-  .fade-enter,
-  .fade-leave-to {
-    visibility: hidden;
-    width:100%;
-    opacity: 0;
-  }
-  img {
-    height:600px;
-    width:100%;
-  }
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 40%;
-    width: auto;
-    padding: 16px;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.7s ease;
-    border-radius: 0 4px 4px 0;
-    text-decoration: none;
-    user-select: none;
-  }
-  .next {
-    right: 0;
-  }
-  .prev {
-    left: 0;
-  }
-  .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.9);
-  } */
+#header{
+  margin-left: 37%;
+  width: 50rem;
+}
+img {
+  width: 12rem;
+  height: 12rem;
+}
+.cards{
+  margin-bottom: 5rem;
+  width: 20rem;
+}
+#column1{
+  margin-left: 10rem;
+}
+#column2{
+  margin-left: 60rem;
+}
+#gallery{
+  display: flex;
+}
 </style>
-
-<!-- <script>
-import ShirtSlider from "./components/shirtslider.vue";
-export default {
-  name: "app",
-  components: {
-    ShirtSlider
-  }
-};
-</script>
-
-<template>
-    <div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
-    
-        <h1>Clothing Selector!</h1>
-        <div class="cards">
-          <ShirtSlider class="slider"/>
-        </div>
-    </div>
-</template> -->
