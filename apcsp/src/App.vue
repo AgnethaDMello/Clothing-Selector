@@ -1,9 +1,11 @@
 <template>
+  <body class="light">
     <div>
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap" rel="stylesheet">
         <h1 id="header">Clothing Gallery!</h1>
+        <section @click="theme" class="btn" id="theme">Change Theme</section>
         <div id="gallery" v-for="(item, index) in items"
         :key="item.name"
             :name="item.name"
@@ -11,25 +13,26 @@
             :desc="item.desc"
             :index="index">
             <div id="column1" class="cards" v-if="item.shirt">
-              <h2 class="shirts">
+              <h2 class="shirtnames">
     {{ item.name }}
             </h2>
-            <img class="shirts" :src="item.img"/>
-            <h2 class="shirts" >
+            <img class="shirtimgs" :src="item.img"/>
+            <h3 class="light" >
     {{ item.desc }}
-            </h2>
+            </h3>
           </div>
   <div id="column2" class="cards" v-else>
-              <h2 class="pants">
+              <h2 class="pantnames">
     {{ item.name }}
             </h2>
-            <img class="pants" :src="item.img"/>
-            <h2 class="pants" >
+            <img class="pantimgs" :src="item.img"/>
+            <h3 class="light" >
     {{ item.desc }}
-            </h2>
+            </h3>
   </div>
         </div>
     </div>
+  </body>
     </template>
 <script>
 export default {
@@ -136,29 +139,76 @@ export default {
       ],
     };
 },
+methods: {
+  theme: function () {
+    if (document.body.classList.contains("light")) {
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+    }
+    else {
+        document.body.classList.add("light");
+        document.body.classList.remove("dark");
+    }
+},
+}
 }
 </script>
 
 <style scoped>
+  .btn,
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    display: inline-block;
+    margin-left: 39.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    color: var(--cool);
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0.5rem rgba(0, 0, 0, 0.2);
+}    
+
 #header{
-  margin-left: 37%;
+  font-size: var(--h1);
+  margin-left: 28.5rem;
   width: 50rem;
+  color: var(--header)
 }
 img {
-  width: 12rem;
-  height: 12rem;
+  width: 20rem;
+  height: 20rem;
 }
 .cards{
   margin-bottom: 5rem;
   width: 20rem;
 }
 #column1{
-  margin-left: 10rem;
+  margin-left: 12rem;
 }
 #column2{
-  margin-left: 60rem;
+  margin-left: 62rem;
+  margin-top: -275.5rem;
+  margin-bottom: 280.5rem;
 }
 #gallery{
   display: flex;
+}
+h2{
+  text-align: center;
+  margin-bottom:1rem;
+  color: var(--header);
+
+}
+h3{
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--header);
 }
 </style>
