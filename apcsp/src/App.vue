@@ -151,7 +151,7 @@ export default {
         {
             name: "Distressed Jean",
             pant: true,
-            img: "https://cdn-fnknc.nitrocdn.com/jwqHRGAzpUgGskUSHlppNQzwuXgXIKwg/assets/static/optimized/rev-c69cd9d/wp-content/uploads/2022/08/Amiri_BestRippedJeans.jpg",
+            img: "https://thumbs.dreamstime.com/b/blue-ripped-jeans-fashion-concept-isolate-white-background-new-154888679.jpg",
             desc: "A washed out light blue jean with tears, a bold punk statement.",
         },
         {
